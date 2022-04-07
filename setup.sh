@@ -17,7 +17,7 @@ az vm open-port \
 
 az vm create \
   --resource-group $resource \
-  --name virtualMachine1 \
+  --name virtualMachine2 \
   --location uksouth \
   --image UbuntuLTS \
   --admin-username azureuser \
@@ -27,4 +27,4 @@ az vm create \
 az vm open-port \
 --port 22 \
 --resource-group $resource \
---name virtualMachine1
+--name virtualMachine2
