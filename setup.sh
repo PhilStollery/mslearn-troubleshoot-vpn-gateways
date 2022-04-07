@@ -1,6 +1,11 @@
 #!/bin/bash
 resource=`az group list --query '[0].name' --output tsv`
 
+az network public-ip create \
+  --name VNet1GWIP \
+  --resource-group $resource \
+  --allocation-method Dynamic
+
 az network vnet create \
   --name usVNet1 \
   --resource-group $resource \
@@ -13,11 +18,6 @@ az network vnet update \
   --name usVNet1 \
   --address-prefixes 10.11.0.0/16 10.12.0.0/16 \
   --resource-group $resource
-
-az network public-ip create \
-  --name VNet1GWIP \
-  --resource-group $resource \
-  --allocation-method Dynamic
 
 az network vnet subnet create \
   --vnet-name usVNet1 \
@@ -43,6 +43,11 @@ az network vnet-gateway create \
 
 printf "***********************  Virtual Network 1 created *********************\n\n"
 
+az network public-ip create \
+  --name VNet2GWIP \
+  --resource-group $resource \
+  --allocation-method Dynamic
+
 az network vnet create \
   --name ukVNet2 \
   --resource-group $resource \
@@ -55,11 +60,6 @@ az network vnet update \
   --name ukVNet2 \
   --address-prefixes 10.41.0.0/16 10.42.0.0/16 \
   --resource-group $resource
-
-az network public-ip create \
-  --name VNet2GWIP \
-  --resource-group $resource \
-  --allocation-method Dynamic
 
 az network vnet subnet create \
   --vnet-name ukVNet2 \
