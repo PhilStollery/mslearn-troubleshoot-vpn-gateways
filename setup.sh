@@ -103,7 +103,7 @@ az network vpn-connection create \
   --shared-key "s3cur3k3ys" \
   --vnet-gateway2 VNet1GW
 
-printf "***********************  Create Virtual Machines *********************\n\n"
+printf "**********************  Create Virtual Machines *********************\n\n"
 
 az vm create \
   --resource-group $resource \
