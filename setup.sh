@@ -16,13 +16,13 @@ az network vnet update \
 
 az network vnet subnet create \
   --vnet-name usVNet1 \
-  --name BackEnd \
+  --name VNet1BackEnd \
   --resource-group $resource \
   --address-prefix 10.12.0.0/24
 
 az network vnet subnet create \
   --vnet-name usVNet1 \
-  --name GatewaySubnet \
+  --name VNet1GatewaySubnet \
   --resource-group $resource \
   --address-prefix 10.12.255.0/27
 
@@ -35,7 +35,7 @@ az network vnet-gateway create \
   --name VNet1GW \
   --location eastus \
   --public-ip-address VNet1GWIP \
-  --resource-group $resource1 \
+  --resource-group $resource \
   --vnet usVNet1 \
   --gateway-type Vpn \
   --sku VpnGw1 \
@@ -59,13 +59,13 @@ az network vnet update \
 
 az network vnet subnet create \
   --vnet-name ukVNet2 \
-  --name BackEnd \
+  --name VNet2BackEnd \
   --resource-group $resource \
   --address-prefix 10.12.0.0/24
 
 az network vnet subnet create \
   --vnet-name ukVNet2 \
-  --name GatewaySubnet \
+  --name VNet2GatewaySubnet \
   --resource-group $resource \
   --address-prefix 10.12.255.0/27
 
@@ -113,6 +113,7 @@ az vm create \
   --admin-username azureuser \
   --public-ip-sku Standard \
   --vnet-name usVNet1 \
+  --subnet VNet1BackEnd \
   --public-ip-address VNet1GWIP \
   --nsg-rule SSH \
   --generate-ssh-keys
@@ -126,5 +127,6 @@ az vm create \
   --public-ip-sku Standard \
   --vnet-name ukVNet2 \
   --public-ip-address VNet2GWIP \
+  --subnet VNet2BackEnd \
   --nsg-rule SSH \
   --generate-ssh-keys
