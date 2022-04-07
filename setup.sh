@@ -47,27 +47,27 @@ printf "***********************  Virtual Network 1 created *********************
 az network vnet create \
   --name ukVNet2 \
   --resource-group $resource \
-  --address-prefix 10.11.0.0/16 \
+  --address-prefix 10.41.0.0/16 \
   --location uksouth \
   --subnet-name FrontEnd \
-  --subnet-prefix 10.11.0.0/24
+  --subnet-prefix 10.41.0.0/24
 
 az network vnet update \
   --name ukVNet2 \
-  --address-prefixes 10.11.0.0/16 10.12.0.0/16 \
+  --address-prefixes 10.41.0.0/16 10.42.0.0/16 \
   --resource-group $resource
 
 az network vnet subnet create \
   --vnet-name ukVNet2 \
   --name BackEnd \
   --resource-group $resource \
-  --address-prefix 10.12.0.0/24
+  --address-prefix 10.42.0.0/24
 
 az network vnet subnet create \
   --vnet-name ukVNet2 \
   --name GatewaySubnet \
   --resource-group $resource \
-  --address-prefix 10.12.255.0/27
+  --address-prefix 10.42.255.0/27
 
 az network public-ip create \
   --name VNet2GWIP \
