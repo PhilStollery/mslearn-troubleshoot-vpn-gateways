@@ -14,6 +14,11 @@ az network vnet update \
   --address-prefixes 10.11.0.0/16 10.12.0.0/16 \
   --resource-group $resource
 
+az network public-ip create \
+  --name VNet1GWIP \
+  --resource-group $resource \
+  --allocation-method Dynamic
+
 az network vnet subnet create \
   --vnet-name usVNet1 \
   --name BackEnd \
@@ -26,11 +31,6 @@ az network vnet subnet create \
   --resource-group $resource \
   --address-prefix 10.12.255.0/27
 
-az network public-ip create \
-  --name VNet1GWIP \
-  --resource-group $resource \
-  --allocation-method Dynamic
-
 az network vnet-gateway create \
   --name VNet1GW \
   --location eastus \
@@ -39,8 +39,7 @@ az network vnet-gateway create \
   --vnet usVNet1 \
   --gateway-type Vpn \
   --sku VpnGw1 \
-  --vpn-type RouteBased \
-  --no-wait
+  --vpn-type RouteBased 
 
 printf "***********************  Virtual Network 1 created *********************\n\n"
 
@@ -57,6 +56,11 @@ az network vnet update \
   --address-prefixes 10.41.0.0/16 10.42.0.0/16 \
   --resource-group $resource
 
+az network public-ip create \
+  --name VNet2GWIP \
+  --resource-group $resource \
+  --allocation-method Dynamic
+
 az network vnet subnet create \
   --vnet-name ukVNet2 \
   --name BackEnd \
@@ -69,11 +73,6 @@ az network vnet subnet create \
   --resource-group $resource \
   --address-prefix 10.42.255.0/27
 
-az network public-ip create \
-  --name VNet2GWIP \
-  --resource-group $resource \
-  --allocation-method Dynamic
-
 az network vnet-gateway create \
   --name VNet2GW \
   --location uksouth \
@@ -82,8 +81,7 @@ az network vnet-gateway create \
   --vnet ukVNet2 \
   --gateway-type Vpn \
   --sku VpnGw1 \
-  --vpn-type RouteBased \
-  --no-wait
+  --vpn-type RouteBased 
 
 printf "***********************  Virtual Network 2 created *********************\n\n"
 
