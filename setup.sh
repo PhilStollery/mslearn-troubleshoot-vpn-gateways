@@ -1,7 +1,7 @@
 #!/bin/bash
 resource=`az group list --query '[0].name' --output tsv`
 
-az network vnet create /
+az network vnet create \
   --name usVNet1 \
   --resource-group $resource \
   --address-prefix 10.11.0.0/16 \
@@ -44,7 +44,7 @@ az network vnet-gateway create \
 
 printf "***********************  Virtual Network 1 created *********************\n\n"
 
-az network vnet create /
+az network vnet create \
   --name ukVNet2 \
   --resource-group $resource \
   --address-prefix 10.11.0.0/16 \
