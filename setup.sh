@@ -102,3 +102,29 @@ az network vpn-connection create \
   --location uksouth \
   --shared-key "s3cur3k3ys" \
   --vnet-gateway2 VNet1GW
+
+printf "***********************  Create Virtual Machines *********************\n\n"
+
+az vm create \
+  --resource-group $resource \
+  --name virtualMachine1 \
+  --location eastus \
+  --image UbuntuLTS \
+  --admin-username azureuser \
+  --public-ip-sku Standard \
+  --vnet-name usVNet1 \
+  --public-ip-address VNet1GWIP \
+  --nsg-rule SSH \
+  --generate-ssh-keys
+
+az vm create \
+  --resource-group $resource \
+  --name virtualMachine2 \
+  --location uksouth \
+  --image UbuntuLTS \
+  --admin-username azureuser \
+  --public-ip-sku Standard \
+  --vnet-name ukVNet2 \
+  --public-ip-address VNet2GWIP \
+  --nsg-rule SSH \
+  --generate-ssh-keys
